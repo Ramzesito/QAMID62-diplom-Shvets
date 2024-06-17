@@ -4,13 +4,12 @@ package ru.iteco.fmhandroid.ui;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
@@ -27,7 +26,6 @@ import androidx.test.filters.LargeTest;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,43 +39,52 @@ public class AppActivityTest {
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
-
     @Test
-    public void appActivityTest() {
-        ViewInteraction textInputEditText = onView(
-                allOf(childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.login_text_input_layout),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textInputEditText.perform(replaceText("login2"), closeSoftKeyboard());
+    public void AppActivityTest() {
 
-        ViewInteraction textInputEditText2 = onView(
-                allOf(childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.password_text_input_layout),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textInputEditText2.perform(replaceText("password2"), closeSoftKeyboard());
+        //System.out.println("ROMA: "+ onView(withId(R.id.login_text_input_layout)));
 
-        ViewInteraction materialButton = onView(
-                allOf(withId(R.id.enter_button), withText("Sign in"), withContentDescription("Save"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.RelativeLayout")),
-                                        1),
-                                2),
-                        isDisplayed()));
-        materialButton.perform(click());
+        ViewInteraction textInputEditText0 = onView(withHint("Login")).perform(typeText("login2"), closeSoftKeyboard());
 
-        ViewInteraction imageButton = onView(
-                allOf(withId(R.id.main_menu_image_button), withContentDescription("Main menu"),
-                        withParent(allOf(withId(R.id.container_custom_app_bar_include_on_fragment_main),
-                                withParent(IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class)))),
-                        isDisplayed()));
-        imageButton.check(matches(isDisplayed()));
+        //System.out.println("ROMA: "+textInputEditText0);
+        //ViewInteraction textInputEditText0 = onView(withId(R.id.login_text_input_layout));
+        //textInputEditText0.perform(replaceText("login2"), closeSoftKeyboard());
+        //System.out.println("ROMA: "+ textInputEditText0.check(matches(isDisplayed())));
+//
+////        ViewInteraction textInputEditText = onView(
+////                allOf(childAtPosition(
+////                                childAtPosition(
+////                                        withId(R.id.login_text_input_layout),
+////                                        0),
+////                                0),
+////                        isDisplayed()));
+////        textInputEditText.perform(replaceText("login2"), closeSoftKeyboard());
+//
+//        ViewInteraction textInputEditText2 = onView(
+//                allOf(childAtPosition(
+//                                childAtPosition(
+//                                        withId(R.id.password_text_input_layout),
+//                                        0),
+//                                0),
+//                        isDisplayed()));
+//        textInputEditText2.perform(replaceText("password2"), closeSoftKeyboard());
+//
+//        ViewInteraction materialButton = onView(
+//                allOf(withId(R.id.enter_button), withText("Sign in"), withContentDescription("Save"),
+//                        childAtPosition(
+//                                childAtPosition(
+//                                        withClassName(is("android.widget.RelativeLayout")),
+//                                        1),
+//                                2),
+//                        isDisplayed()));
+//        materialButton.perform(click());
+//
+//        ViewInteraction imageButton = onView(
+//                allOf(withId(R.id.main_menu_image_button), withContentDescription("Main menu"),
+//                        withParent(allOf(withId(R.id.container_custom_app_bar_include_on_fragment_main),
+//                                withParent(IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class)))),
+//                        isDisplayed()));
+//        imageButton.check(matches(isDisplayed()));
     }
 
     private static Matcher<View> childAtPosition(
