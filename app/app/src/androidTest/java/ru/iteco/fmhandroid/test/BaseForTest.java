@@ -20,7 +20,6 @@ import java.util.concurrent.TimeoutException;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 public class BaseForTest {
-
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);

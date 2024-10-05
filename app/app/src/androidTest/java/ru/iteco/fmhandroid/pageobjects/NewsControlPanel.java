@@ -128,7 +128,7 @@ public class NewsControlPanel {
         onView(withId(saveBtn)).check(matches(isDisplayed())).perform(click());
     }
     public void clickCancelButton() {
-        Allure.step("Клик по кнопке с ID = " + cancelBtn + "(clickSaveButton())");
+        Allure.step("Клик по кнопке с ID = " + cancelBtn + "(clickCancelButton())");
         onView(withId(cancelBtn)).check(matches(isDisplayed())).perform(click());
     }
 

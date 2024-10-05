@@ -1,11 +1,19 @@
 package ru.iteco.fmhandroid.test;
 
 import android.view.View;
+
 import androidx.test.core.app.ActivityScenario;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
+import io.qameta.allure.kotlin.Description;
+import io.qameta.allure.kotlin.Epic;
+import io.qameta.allure.kotlin.Feature;
+import io.qameta.allure.kotlin.Severity;
+import io.qameta.allure.kotlin.SeverityLevel;
 import ru.iteco.fmhandroid.data.DataHelper;
 import ru.iteco.fmhandroid.pageobjects.AppMain;
 import ru.iteco.fmhandroid.pageobjects.NewsControlPanel;
@@ -39,18 +47,31 @@ public class NewsControlPanelTest extends BaseForTest {
         dashboard.selectItemClick(dashboard.getNewsCaption());
         newsScreen.controlPanelEnter();
     }
+
+    @Epic(value = "Основные функциональные тесты")
+    @Feature(value = "Панель управления новостями")
     @Test
+    @Description(value = "Проверка открытия панели управления новостями")
+    @Severity(value = SeverityLevel.BLOCKER)
     public void shouldNewsControlPanelBeOpened() {
         newsControlPanel.screenIsDisplayed();
     }
 
+    @Epic(value = "Основные функциональные тесты")
+    @Feature(value = "Панель управления новостями")
     @Test
+    @Description(value = "Проверка открытия формы создания новости")
+    @Severity(value = SeverityLevel.BLOCKER)
     public void shouldCreatingNewsFormBeOpened() {
         newsControlPanel.addNewsButtonClick();
         newsControlPanel.creatingNewsFormIsDisplayed();
     }
 
+    @Epic(value = "Основные функциональные тесты")
+    @Feature(value = "Панель управления новостями")
     @Test
+    @Description(value = "Проверка добавления валидной новости")
+    @Severity(value = SeverityLevel.BLOCKER)
     public void shouldAddValidNews() {
         DataHelper.NewsInfo creatingNews = DataHelper.getValidNews(0);
         newsControlPanel.addNewsButtonClick();
@@ -62,14 +83,22 @@ public class NewsControlPanelTest extends BaseForTest {
         newsScreen.isNewsPublished(creatingNews);
     }
 
+    @Epic(value = "Основные функциональные тесты")
+    @Feature(value = "Панель управления новостями")
     @Test
+    @Description(value = "Проверка сообщения при отмене добавления новости")
+    @Severity(value = SeverityLevel.MINOR)
     public void shouldNotifyWhenCancelAddingNews() {
         newsControlPanel.addNewsButtonClick();
         newsControlPanel.clickCancelButton();
         newsControlPanel.isCancelNotifyMessageDisplayed();
     }
 
+    @Epic(value = "Основные функциональные тесты")
+    @Feature(value = "Панель управления новостями")
     @Test
+    @Description(value = "Проверка отсутствия сохранения новости при отмене создания")
+    @Severity(value = SeverityLevel.NORMAL)
     public void shouldCancelAddingNewsWithoutSaving() {
         DataHelper.NewsInfo cancelingNews = DataHelper.getValidNews(1);
         newsControlPanel.addNewsButtonClick();
@@ -82,13 +111,16 @@ public class NewsControlPanelTest extends BaseForTest {
         newsScreen.isNewsNotPublished(cancelingNews);
     }
 
+    @Epic(value = "Основные функциональные тесты")
+    @Feature(value = "Панель управления новостями")
     @Test
+    @Description(value = "Проверка всплывающего сообщения при сохранении новости при незаполненных полях")
+    @Severity(value = SeverityLevel.MINOR)
     public void shouldNotifyIfEmptyFields() {
         newsControlPanel.addNewsButtonClick();
         newsControlPanel.creatingNewsFormIsDisplayed();
         newsControlPanel.clickSaveButton();
         newsControlPanel.isToastMessageDisplayed(decorView, toastMessage);
     }
-
 
 }

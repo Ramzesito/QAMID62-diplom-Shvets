@@ -52,6 +52,16 @@ public class NewsScreen {
                 .check(matches(withText(news.getDescription())));
     }
     public void isNewsNotPublished(DataHelper.NewsInfo news) {
+        Allure.step("Проверка списка новостей на пустоту.");
+
+//        ViewInteraction textView = onView(
+//                allOf(withId(R.id.empty_news_list_text_view), withText("There is nothing here yet..."),
+//                        withParent(allOf(withId(R.id.all_news_cards_block_constraint_layout),
+//                                withParent(withId(R.id.container_list_news_include)))),
+//                        isDisplayed()));
+//        textView.check(matches(withText("There is nothing here yet...")));
+
+
         Allure.step("Клик на первую новость в RecyclerView с ID = " + newsRecyclerView + " (isNewsNotPublished())");
         onView(withId(newsRecyclerView)).perform(actionOnItemAtPosition(0, click()));
 

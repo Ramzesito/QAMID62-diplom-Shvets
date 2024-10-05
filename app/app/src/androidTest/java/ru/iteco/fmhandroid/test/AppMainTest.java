@@ -4,6 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
+import io.qameta.allure.kotlin.Description;
+import io.qameta.allure.kotlin.Epic;
+import io.qameta.allure.kotlin.Feature;
 import ru.iteco.fmhandroid.data.DataHelper;
 import ru.iteco.fmhandroid.pageobjects.AboutScreen;
 import ru.iteco.fmhandroid.pageobjects.AppMain;
@@ -24,19 +27,28 @@ public class AppMainTest extends BaseForTest {
             appMain.performLogin(DataHelper.getValidAuthInfo());
         }
     }
+    @Epic(value = "Основные функциональные тесты")
+    @Feature(value = "Открытие экранов и переходы между ними")
     @Test
+    @Description(value = "Проверка перехода с главного экрана на экран Новости")
     public void shouldNavigateFromMainToNews(){
         dashboard.mainMenuClick();
         dashboard.selectItemClick(dashboard.getNewsCaption());
         newsScreen.screenIsDisplayed();
     }
+    @Epic(value = "Основные функциональные тесты")
+    @Feature(value = "Открытие экранов и переходы между ними")
     @Test
+    @Description(value = "Проверка перехода с главного экрана на экран About")
     public void shouldNavigateFromMainToAbout(){
         dashboard.mainMenuClick();
         dashboard.selectItemClick(dashboard.getAboutCaption());
         aboutScreen.screenIsDisplayed();
     }
+    @Epic(value = "Основные функциональные тесты")
+    @Feature(value = "Открытие экранов и переходы между ними")
     @Test
+    @Description(value = "Проверка перехода с экрана Новости на главный экран")
     public void shouldNavigateFromNewsToMain() {
         dashboard.mainMenuClick();
         dashboard.selectItemClick(dashboard.getNewsCaption());
@@ -44,7 +56,10 @@ public class AppMainTest extends BaseForTest {
         dashboard.selectItemClick(dashboard.getMainCaption());
         mainScreen.screenIsDisplayed();
     }
+    @Epic(value = "Основные функциональные тесты")
+    @Feature(value = "Открытие экранов и переходы между ними")
     @Test
+    @Description(value = "Проверка перехода с экрана Новости на экран About")
     public void shouldNavigateFromNewsToAbout() {
         dashboard.mainMenuClick();
         dashboard.selectItemClick(dashboard.getNewsCaption());
@@ -52,14 +67,20 @@ public class AppMainTest extends BaseForTest {
         dashboard.selectItemClick(dashboard.getAboutCaption());
         aboutScreen.screenIsDisplayed();
     }
+    @Epic(value = "Основные функциональные тесты")
+    @Feature(value = "Открытие экранов и переходы между ними")
     @Test
+    @Description(value = "Проверка возврата с экрана About на главный экран")
     public void shouldReturnFromAboutToMain() {
         dashboard.mainMenuClick();
         dashboard.selectItemClick(dashboard.getAboutCaption());
         aboutScreen.clickReturnButton();
         mainScreen.screenIsDisplayed();
     }
+    @Epic(value = "Основные функциональные тесты")
+    @Feature(value = "Открытие экранов и переходы между ними")
     @Test
+    @Description(value = "Проверка возврата с экрана About на экран Новости")
     public void shouldReturnFromAboutToNews() {
         dashboard.mainMenuClick();
         dashboard.selectItemClick(dashboard.getNewsCaption());
