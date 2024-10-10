@@ -31,3 +31,6 @@
 
 При этом автотесты отрабатывают примерно за 2,5мин, что позволит значительно экономить время в будущем при проведении смоук и регресс тестов.
 
+Результаты автотестов в Allure - [allure-results.zip](https://github.com/Ramzesito/QAMID62-diplom-Shvets/blob/main/allure-results.zip)
+
+![image](https://github.com/user-attachments/assets/af3990ec-d6e2-43db-94ec-b5b31f2bd54a)
